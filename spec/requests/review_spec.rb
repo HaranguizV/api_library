@@ -9,7 +9,7 @@ RSpec.describe 'Reviews API', type: :request do
     let!(:data_search) { create(:reviews, review: 'Review search', book_id: data_book_create.id, user_id: 1, score: 4.0) }
     let!(:data_delete) { create(:reviews, review: 'Review delete', book_id: data_book_create.id, user_id: 1, score: 3.5) }
 
-    it 'devuelve un usuario' do
+    it 'devuelve una review' do
       get "/api/v1/reviews/#{data_search.id}"
       expect(response).to have_http_status(:success)
       resp = JSON.parse(response.body)
