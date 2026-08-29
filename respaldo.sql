@@ -1,0 +1,48 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE users(  
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    created_at DATETIME,
+    updated_at DATETIME,
+    active INT
+);
+INSERT INTO users VALUES(1,'Arnaldo1','2026-08-28 21:52:20.303381','2026-08-28 21:52:20.303393',1);
+INSERT INTO users VALUES(2,'User 2','2026-08-28 23:50:46.988073','2026-08-28 23:50:46.988081',1);
+INSERT INTO users VALUES(3,'User 3','2026-08-28 23:50:50.723638','2026-08-28 23:50:50.723642',1);
+INSERT INTO users VALUES(4,'User 4','2026-08-28 23:50:55.952113','2026-08-28 23:50:55.952118',1);
+INSERT INTO users VALUES(5,'User 5','2026-08-28 23:51:01.248891','2026-08-28 23:51:01.248896',1);
+CREATE TABLE IF NOT EXISTS "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY);
+CREATE TABLE IF NOT EXISTS "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL);
+CREATE TABLE books(  
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    score FLOAT,
+    user_id INT,
+    total_reviews INT,
+    created_at DATETIME,
+    updated_at DATETIME,
+    active INT
+);
+INSERT INTO books VALUES(1,'Libro prueba 1',4.29999999999999982,1,3,'2026-08-28 22:10:22.176221','2026-08-28 23:51:20.680308',1);
+INSERT INTO books VALUES(2,'Libro prueba 2',4.0,1,1,'2026-08-28 23:50:14.148742','2026-08-28 23:51:26.291321',1);
+INSERT INTO books VALUES(3,'Libro prueba 3',4.0,1,1,'2026-08-28 23:50:18.895116','2026-08-28 23:51:31.820615',1);
+INSERT INTO books VALUES(4,'Libro prueba 4',0.0,2,0,'2026-08-28 23:50:27.569604','2026-08-28 23:50:27.569607',1);
+INSERT INTO books VALUES(5,'Libro prueba 5',0.0,2,0,'2026-08-28 23:50:33.958008','2026-08-28 23:50:33.958012',1);
+CREATE TABLE reviews(  
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    review TEXT,
+    score FLOAT,
+    user_id INT,
+    active INT
+, book_id INT, created_at DATETIME, updated_at DATETIME);
+INSERT INTO reviews VALUES(1,'Buen libro',5.0,1,1,1,'2026-08-28 22:18:32.660357','2026-08-28 22:18:32.660369');
+INSERT INTO reviews VALUES(2,'Buen libro',4.0,2,1,1,'2026-08-28 23:51:14.617710','2026-08-28 23:51:14.617716');
+INSERT INTO reviews VALUES(3,'Buen libro',4.0,3,1,1,'2026-08-28 23:51:20.672640','2026-08-28 23:51:20.672645');
+INSERT INTO reviews VALUES(4,'Buen libro',4.0,3,1,2,'2026-08-28 23:51:26.285101','2026-08-28 23:51:26.285106');
+INSERT INTO reviews VALUES(5,'Buen libro',4.0,3,1,3,'2026-08-28 23:51:31.813807','2026-08-28 23:51:31.813863');
+DELETE FROM sqlite_sequence;
+INSERT INTO sqlite_sequence VALUES('users',5);
+INSERT INTO sqlite_sequence VALUES('books',5);
+INSERT INTO sqlite_sequence VALUES('reviews',5);
+COMMIT;
